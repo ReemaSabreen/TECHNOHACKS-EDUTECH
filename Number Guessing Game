@@ -1,0 +1,51 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+int generateRandomNumber(int lower, int upper) {
+    return rand() % (upper - lower + 1) + lower;
+}
+void play() {
+    srand(time(NULL));
+    int LowerLimit = 1;
+    int UpperLimit = 100;
+    int MaxAttempts = 10;
+    int TotalAttempts = 0;
+    int RoundsWon = 0;
+    char PlayAgain;
+    do {
+        int TargetNumber = generateRandomNumber(LowerLimit, UpperLimit);
+        int attempts = 0;
+        int UserGuess;
+        printf("\nGuess a number between %d and %d.\n", LowerLimit, UpperLimit);
+        while (attempts < MaxAttempts) {
+            printf("Enter your guess: ");
+            scanf("%d", &UserGuess);
+            if (UserGuess == TargetNumber) {
+                printf("Congratulations! You guessed the correct number in %d attempts.\n", attempts + 1);
+                TotalAttempts += attempts + 1;
+                RoundsWon++;
+                break;
+            } else if (UserGuess < TargetNumber) {
+                printf("Try guessing a higher number.\n");
+            } else {
+                printf("Try guessing a lower number.\n");
+            }
+
+            attempts++;
+        }
+        if (UserGuess !=TargetNumber) {
+            printf("Sorry, you've run out of attempts. The correct number was %d.\n", TargetNumber);
+            TotalAttempts += MaxAttempts;
+        }
+        printf("Do you want to play again? (y/n): ");
+        scanf(" %c", &PlayAgain);
+    }while (PlayAgain == 'y' || PlayAgain =='Y');
+    printf("\nGame Over!\n");
+    printf("Rounds won: %d\n", RoundsWon);
+    printf("Total attempts: %d\n", TotalAttempts);
+}
+int main() {
+    printf("WELCOME TO NUNMBER GUESSING GAME\n");
+    play();
+    return 0;
+}
