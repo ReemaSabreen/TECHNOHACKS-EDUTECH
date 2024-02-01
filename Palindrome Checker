@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <string.h>
+int isPalindrome(char str[]) {
+    int len = strlen(str);
+    int i, j;
+    for (i = 0, j = len - 1; i < j; i++, j--) {
+        if (str[i] != str[j]) {
+            return 0;
+        }
+    }
+    return 1;
+}
+int main() {
+    char str[100];
+    char ch;
+    do{
+    printf("ENTER ANY STRING: ");
+    scanf("%s", str);
+    if (isPalindrome(str)) {
+        printf("'%s' IS A PALINDROME.\n", str);
+    } else {
+        printf("'%s' IS NOT A PALINDROME.\n",str);
+    }
+    printf("Do you want to continue(y/n):");
+    scanf(" %c",&ch);
+    } while(ch == 'y' || ch == 'Y');
+    return 0;
+}
+
