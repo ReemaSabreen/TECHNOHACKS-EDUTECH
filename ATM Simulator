@@ -1,0 +1,64 @@
+#include <stdio.h>
+
+float deposit(float balance, float amount) {
+    if (amount > 0) {
+        balance += amount;
+        printf("Deposit successful!\nCurrent balance: %.2f\n", balance);
+    } else {
+        printf("Invalid deposit amount. Please enter a positive value.\n");
+    }
+    return balance;
+}
+float withdraw(float balance, float amount) {
+    if (amount > 0 && amount <= balance) {
+        balance -= amount;
+        printf("Withdrawal successful!\nCurrent balance: %.2f\n", balance);
+    } else if (amount > balance) {
+        printf("Insufficient fund!\nCannot withdraw more than the available balance.\n");
+    } else {
+        printf("Invalid withdrawal amount. Please enter a positive value.\n");
+    }
+    return balance;
+}
+void CheckBalance(float balance) {
+    printf("Current balance: %.2f\n", balance);
+}
+int main() {
+    printf("*************** ATM SIMULATOR ***************\n");
+    float balance;
+    printf("Enter the initial account balance: ");
+    scanf("%f", &balance);
+    int choice;
+    float amount;
+    do {
+        printf("\nATM Menu:\n");
+        printf("1. Deposit\n");
+        printf("2. Withdraw\n");
+        printf("3. Check Balance\n");
+        printf("4. Exit\n");
+        printf("Enter your choice (1-4): ");
+        scanf("%d", &choice);
+        switch (choice) {
+            case 1:
+                printf("Enter the deposit amount: ");
+                scanf("%f", &amount);
+                balance = deposit(balance, amount);
+                break;
+            case 2:
+                printf("Enter the withdrawal amount: ");
+                scanf("%f", &amount);
+                balance = withdraw(balance, amount);
+                break;
+            case 3:
+                CheckBalance(balance);
+                break;
+            case 4:
+                printf("THANK YOU!\n");
+                break;
+            default:
+                printf("Invalid choice. Please enter a valid choice(1 - 4).\n");
+                break;
+        }
+    } while (choice != 4);
+    return 0;
+}
