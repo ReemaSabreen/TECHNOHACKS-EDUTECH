@@ -1,0 +1,58 @@
+#include <stdio.h>
+
+void DecimalToBinary(int DeciNum) {
+    printf("Binary equivalent of '%d' is '",DeciNum);
+    if (DeciNum == 0) {
+        printf("0");
+    } else {
+        int binary[32],i=0;
+        while (DeciNum > 0) {
+            binary[i] = DeciNum % 2;
+            DeciNum /= 2;
+            i++;
+        }
+        for (int j = i - 1; j >= 0; j--) {
+            printf("%d", binary[j]);
+        }
+    }
+    printf("'\n");
+}
+void DecimalToOctal(int DeciNum) {
+    printf("Octal equivalent of '%d' is '%o'\n", DeciNum,DeciNum);
+}
+void DecimalToHexadecimal(int DeciNum) {
+    printf("Hexadecimal equivalent of '%d' is '%X'\n", DeciNum,DeciNum);
+}
+int main() {
+    printf("***************NUMBER SYSYEM CONVERTER***************\n");
+    int DeciNum, choice;
+    char ch;
+    do{
+    printf("\nEnter a decimal number: ");
+    scanf("%d",&DeciNum);
+    printf("Choose a conversion\n");
+    printf("1. Decimal to Binary\n");
+    printf("2. Decimal to Octal\n");
+    printf("3. Decimal to Hexadecimal\n");
+    printf("Enter your choice : ");
+    scanf("%d",&choice);
+    switch (choice) {
+        case 1:
+            DecimalToBinary(DeciNum);
+            break;
+        case 2:
+            DecimalToOctal(DeciNum);
+            break;
+        case 3:
+            DecimalToHexadecimal(DeciNum);
+            break;
+        default:
+            printf("Invalid choice. Please enter a valid choice.\n");
+            break;
+    }
+    printf("Do you want to continue(y/n):");
+    scanf(" %c",&ch);
+    }while(ch == 'y' || ch == 'Y');
+    printf("THANK YOU!");
+    return 0;
+}
